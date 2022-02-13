@@ -1,4 +1,2 @@
-# csgo_external
+# kebabaim
  My first attempt at making an external csgo cheat.
-# first-external
-
