@@ -48,6 +48,15 @@ void Cheat::run()
 
     std::thread settingsThread(&Cheat::menuLoop, this);
     std::thread glowThread(&Cheat::glowLoop, this);
+    std::thread bhopThread(&Cheat::bhopLoop, this);
+    std::thread triggerThread(&Cheat::triggerLoop, this);
+    std::thread isInGameThread(&Cheat::isInGameLoop, this);
+
+    isInGameThread.detach();
+    triggerThread.detach();
+    bhopThread.detach();
+    settingsThread.detach();
+    glowThread.detach();
 
     while (true)
     {
@@ -60,20 +69,9 @@ void Cheat::run()
             exit(0);
         }
 
-        if (IsInGame())
-        {
-            bhop->run();
-            triggerbot->run();
-        }
-        else
-        {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-        }
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-    settingsThread.join();
-    glowThread.join();
 }
 
 sig_on_state Cheat::SigOnState()
@@ -285,9 +283,8 @@ void Cheat::triggerLoop()
 
     while (true)
     {
-        if (IsInGame()) triggerbot->run();
+        if (isInGame) triggerbot->run();
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }
 
 void Cheat::bhopLoop()
@@ -302,9 +299,8 @@ void Cheat::bhopLoop()
 
     while (true)
     {
-        if (IsInGame()) bhop->run();
+        if (isInGame) bhop->run();
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(5));
 }
 
 void Cheat::glowLoop()
@@ -319,7 +315,7 @@ void Cheat::glowLoop()
 
     while (true)
     {
-        if (IsInGame() && glow->isEnabled) 
+        if (isInGame && glow->isEnabled)
         { 
             glow->run(); 
         }
@@ -343,6 +339,16 @@ void Cheat::menuLoop()
     while (true)
     {
         Settings();
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(30));
+}
+
+void Cheat::isInGameLoop()
+{
+    while (true)
+    {
+        isInGame = IsInGame();
+
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
 }

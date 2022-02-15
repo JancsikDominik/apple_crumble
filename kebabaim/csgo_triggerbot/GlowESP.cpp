@@ -1,6 +1,7 @@
 #include "GlowESP.h"
 #include "csgo.hpp"
 #include <iostream>
+#include <thread>
 
 GlowESP::GlowESP(Memory* Mem, LocalEntity* LocEnt): m_Mem(Mem), m_LocEnt(LocEnt)
 {
@@ -31,7 +32,7 @@ void GlowESP::run()
 {
 	if (!isEnabled) return;
 
-	for (int i = 0; i < 65; i++)
+	for (int i = 0; i < 33; i++)
 	{
 		DWORD entity = GetEntity(i);
 		if (!entity) continue;
@@ -39,8 +40,9 @@ void GlowESP::run()
 		int glow_index = m_Mem->Read<int>(entity + netvars::m_iGlowIndex);
 		bool entityDormant = m_Mem->Read<bool>(entity + signatures::m_bDormant);
 		int entityTeamID = m_Mem->Read<int>(entity + netvars::m_iTeamNum);
-
-		if (!entityDormant && GetEntityClassID(entity) == 40)
+		
+		// GetEntityClassID(entity) == 40 check is useless since we only loop through the first 32 enteties
+		if (!entityDormant)
 		{
 			if (entityTeamID != m_LocEnt->GetTeamID())
 			{
@@ -64,4 +66,5 @@ void GlowESP::run()
 			}
 		}
 	}
+	// std::this_thread::sleep_for(std::chrono::nanoseconds(2));
 }

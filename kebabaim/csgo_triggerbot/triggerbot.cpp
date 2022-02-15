@@ -12,15 +12,16 @@ void Triggerbot::run()
 {
     if (isEnabled && GetAsyncKeyState(VK_XBUTTON2) < 0)
     {
+        int cross = m_locEnt->GetiCross();
         // Retrieve the EntityBase, using dwEntityList                                           Getting entity in the crosshair 0x10 == sizeof(entity)
-        DWORD TriggerEntityBase = m_Mem->Read<DWORD>(m_Mem->Client + signatures::dwEntityList + ((m_locEnt->GetiCross() - 1) * 0x10));
+        DWORD TriggerEntityBase = m_Mem->Read<DWORD>(m_Mem->Client + signatures::dwEntityList + ((cross - 1) * 0x10));
         int TriggerEntityTeam = m_Mem->Read<int>(TriggerEntityBase + netvars::m_iTeamNum);
         bool TriggerEntityDormant = m_Mem->Read<bool>(TriggerEntityBase + signatures::m_bDormant);
 
         // delay before shot
         delay == 0 ? std::this_thread::sleep_for(std::chrono::microseconds(10)) : Sleep(delay);
         // checking if entity is a valid entity (a player), and entity team
-        if ((m_locEnt->GetiCross() > 0 && m_locEnt->GetiCross() <= 64) && (TriggerEntityBase != NULL) && (TriggerEntityTeam != NULL) && (!TriggerEntityDormant))
+        if ((cross > 0 && cross <= 64) && (TriggerEntityBase != NULL) && (TriggerEntityTeam != NULL) && (!TriggerEntityDormant))
         {
             if (teamTrigger)
             {
@@ -29,6 +30,8 @@ void Triggerbot::run()
                 Sleep(5);
                 // -attack
                 m_Mem->Write<int>(m_Mem->Client + signatures::dwForceAttack, 4);
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
             else if (TriggerEntityTeam != m_locEnt->GetTeamID())
             {
@@ -37,7 +40,10 @@ void Triggerbot::run()
                 Sleep(5);
                 // -attack
                 m_Mem->Write<int>(m_Mem->Client + signatures::dwForceAttack, 4);
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
         }
     }
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }

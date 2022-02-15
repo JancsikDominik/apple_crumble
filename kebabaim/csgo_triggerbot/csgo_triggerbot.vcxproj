@@ -142,7 +142,7 @@
   <ItemGroup>
     <ClCompile Include="BHop.cpp" />
     <ClCompile Include="cheat.cpp" />
-    <ClCompile Include="csgo_triggerbot.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="GlowESP.cpp" />
     <ClCompile Include="localEntity.cpp" />
     <ClCompile Include="memory.cpp" />

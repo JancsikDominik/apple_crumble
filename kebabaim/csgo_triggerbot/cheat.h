@@ -35,6 +35,7 @@ private:
     void bhopLoop();
     void glowLoop();
     void menuLoop();
+    void isInGameLoop();
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Memory* m_MemoryManager;
@@ -42,5 +43,7 @@ private:
 	Triggerbot* triggerbot;
 	BHop* bhop;
     GlowESP* glow;
+
+    bool isInGame = false;
 };
 
