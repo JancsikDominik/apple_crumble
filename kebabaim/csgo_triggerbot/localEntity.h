@@ -24,6 +24,7 @@ public:
 	DWORD GetCurrWeapon() const;
 	int GetCurrWeaponID() const;
 	float GetAccuracyPenalty() const;
+	int GetHP() const;
 
 private:
 	const Memory* m_MemoryManager;

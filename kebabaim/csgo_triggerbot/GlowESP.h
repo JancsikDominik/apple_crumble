@@ -4,6 +4,7 @@
 #include "localEntity.h"
 #include <iostream>
 #include <Windows.h>
+#include <vector>
 
 struct Vector
 {
@@ -24,6 +25,12 @@ struct glow_object_t2
     BYTE fullBloom = false;
 };
 
+struct entity_t
+{
+    DWORD base;
+    int glow_index;
+};
+
 class GlowESP
 {
 public:
@@ -31,17 +38,27 @@ public:
 
 	DWORD GetGlowObjManager() const;
 	DWORD GetEntity(int i) const;
+    int GetEntityHealth(DWORD entity) const;
 	int GetEntityClassID(DWORD entity) const;
+    void SetupGlowEnteties();
+
 	bool isEnabled = true;
     bool teamGlow = false;
     bool fullBloom = false;
+    bool potatoMode = false;
+    bool hpGlow = true;
 
 	void run();
 
 private:
+    int GetLifeState(DWORD entity);
+
 	Memory* m_Mem;
 	LocalEntity* m_LocEnt;
     glow_object_t2 glow_object;
+
+    std::vector<entity_t> enemies;
+    std::vector<entity_t> teammates;
 
 	void WriteGlow(int glowIndex) const;
 };

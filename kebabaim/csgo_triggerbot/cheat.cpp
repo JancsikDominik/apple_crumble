@@ -72,6 +72,12 @@ void Cheat::DrawMenu()
     std::cout << "-------------------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << std::endl;
 
+    /*
+     *
+     *            VISUALS
+     *
+     */
+
     SetConsoleTextAttribute(hConsole, 5);    
     std::cout << "Visuals:" << std::endl;
     SetConsoleTextAttribute(hConsole, 3);
@@ -112,7 +118,27 @@ void Cheat::DrawMenu()
         SetConsoleTextAttribute(hConsole, 4);
         std::cout << "[OFF]" << std::endl;
     }
+
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [F9] Hp glow: ";
+    if (glow->hpGlow)
+    {
+        SetConsoleTextAttribute(hConsole, 2);
+        std::cout << "[ON]" << std::endl;
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        std::cout << "[OFF]" << std::endl;
+    }
+
     std::cout << std::endl;
+
+    /*
+     *
+     *            MISC
+     *
+     */
 
     SetConsoleTextAttribute(hConsole, 5);
     std::cout << "Misc:" << std::endl;
@@ -151,6 +177,19 @@ void Cheat::DrawMenu()
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F5] Bhop: ";
     if (bhop->isEnabled)
+    {
+        SetConsoleTextAttribute(hConsole, 2);
+        std::cout << "[ON]" << std::endl;
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        std::cout << "[OFF]" << std::endl;
+    }
+
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [F6] Potato-Mode: ";
+    if (glow->potatoMode)
     {
         SetConsoleTextAttribute(hConsole, 2);
         std::cout << "[ON]" << std::endl;
@@ -226,49 +265,48 @@ void Cheat::Settings()
         DrawMenu();
         Sleep(150);
     }
+    if (GetAsyncKeyState(VK_F6) < 0)
+    {
+        glow->potatoMode = !glow->potatoMode;
+        system("CLS");
+        DrawMenu();
+        Sleep(150);
+    }
+    if (GetAsyncKeyState(VK_F9) < 0)
+    {
+        glow->hpGlow = !glow->hpGlow;
+        system("CLS");
+        DrawMenu();
+        Sleep(150);
+    }
 }
 
 void Cheat::triggerLoop()
 {
-    DWORD state = -1;
-    GetExitCodeProcess(m_MemoryManager->GetProcHandle(), &state);
-    // if game state isn't active we exit the cheat
-    if (state != STILL_ACTIVE)
-    {
-        std::terminate();
-    }
-
     while (true)
     {
-        if (isInGame) triggerbot->run();
+        if (isInGame)
+            triggerbot->run();
+        else
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }
 
 void Cheat::bhopLoop()
 {
-    DWORD state = -1;
-    GetExitCodeProcess(m_MemoryManager->GetProcHandle(), &state);
-    // if game state isn't active we exit the cheat
-    if (state != STILL_ACTIVE)
-    {
-        std::terminate();
-    }
-
     while (true)
     {
-        if (isInGame) bhop->run();
+        if (isInGame) 
+            bhop->run();
+        else
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
 }
 
 void Cheat::glowLoop()
 {
-    DWORD state = -1;
-    GetExitCodeProcess(m_MemoryManager->GetProcHandle(), &state);
-    // if game state isn't active we exit the cheat
-    if (state != STILL_ACTIVE)
-    {
-        std::terminate();
-    }
+    std::thread glowEntityThread(&GlowESP::SetupGlowEnteties, glow);
+    glowEntityThread.detach();
 
     while (true)
     {
@@ -285,14 +323,6 @@ void Cheat::glowLoop()
 
 void Cheat::menuLoop()
 {
-    DWORD state = -1;
-    GetExitCodeProcess(m_MemoryManager->GetProcHandle(), &state);
-    // if game state isn't active we exit the cheat
-    if (state != STILL_ACTIVE)
-    {
-        std::terminate();
-    }
-
     while (true)
     {
         Settings();
