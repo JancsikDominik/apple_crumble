@@ -52,3 +52,8 @@ float LocalEntity::GetAccuracyPenalty() const
 {
 	return m_MemoryManager->Read<float>(GetCurrWeapon() + netvars::m_fAccuracyPenalty);
 }
+
+int LocalEntity::GetHP() const
+{
+	return m_MemoryManager->Read<int>(GetLocalPlayer() + netvars::m_iHealth);
+}
