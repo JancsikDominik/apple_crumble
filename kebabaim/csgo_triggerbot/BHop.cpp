@@ -6,7 +6,6 @@
 BHop::BHop(const Memory* Mem, const LocalEntity* locEnt): m_Mem(Mem), m_locEnt(locEnt)
 {
 	isEnabled = true;
-    isAutoStrafeOn = false;
 }
 
 void BHop::run()

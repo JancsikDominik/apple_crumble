@@ -20,6 +20,7 @@ void Triggerbot::run()
 
         // delay before shot
         delay == 0 ? std::this_thread::sleep_for(std::chrono::microseconds(10)) : Sleep(delay);
+
         // checking if entity is a valid entity (a player), and entity team
         if ((cross > 0 && cross <= 64) && (TriggerEntityBase != NULL) && (TriggerEntityTeam != NULL) && (!TriggerEntityDormant))
         {
