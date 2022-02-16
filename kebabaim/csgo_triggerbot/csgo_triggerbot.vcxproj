@@ -142,8 +142,9 @@
   <ItemGroup>
     <ClCompile Include="BHop.cpp" />
     <ClCompile Include="cheat.cpp" />
+    <ClCompile Include="entityListManager.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="GlowESP.cpp" />
+    <ClCompile Include="glowESP.cpp" />
     <ClCompile Include="localEntity.cpp" />
     <ClCompile Include="memory.cpp" />
     <ClCompile Include="triggerbot.cpp" />
@@ -152,7 +153,8 @@
     <ClInclude Include="BHop.h" />
     <ClInclude Include="cheat.h" />
     <ClInclude Include="csgo.hpp" />
-    <ClInclude Include="GlowESP.h" />
+    <ClInclude Include="entityListManager.h" />
+    <ClInclude Include="glowESP.h" />
     <ClInclude Include="localEntity.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="resource3.h" />

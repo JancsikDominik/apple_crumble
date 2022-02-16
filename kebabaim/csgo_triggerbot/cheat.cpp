@@ -4,9 +4,9 @@
 #include <thread>
 
 Cheat::Cheat(): 
-    m_MemoryManager(new Memory()), m_locEnt(new LocalEntity(m_MemoryManager)), 
+    m_MemoryManager(new Memory()), m_locEnt(new LocalEntity(m_MemoryManager)), m_entList(new EntityListManager(m_locEnt, m_MemoryManager)),
     triggerbot(new Triggerbot(m_MemoryManager, m_locEnt)), bhop(new BHop(m_MemoryManager, m_locEnt)),
-    glow(new GlowESP(m_MemoryManager, m_locEnt))
+    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList))
 {
 }
 
@@ -23,12 +23,14 @@ void Cheat::run()
 {
     DrawMenu();
 
+    std::thread playerListUpdaterThread(&EntityListManager::UpdatePlayerList, m_entList);
     std::thread settingsThread(&Cheat::menuLoop, this);
     std::thread glowThread(&Cheat::glowLoop, this);
     std::thread bhopThread(&Cheat::bhopLoop, this);
     std::thread triggerThread(&Cheat::triggerLoop, this);
     std::thread isInGameThread(&Cheat::isInGameLoop, this);
 
+    playerListUpdaterThread.detach();
     isInGameThread.detach();
     triggerThread.detach();
     bhopThread.detach();
@@ -305,9 +307,6 @@ void Cheat::bhopLoop()
 
 void Cheat::glowLoop()
 {
-    std::thread glowEntityThread(&GlowESP::SetupGlowEnteties, glow);
-    glowEntityThread.detach();
-
     while (true)
     {
         if (isInGame && glow->isEnabled)

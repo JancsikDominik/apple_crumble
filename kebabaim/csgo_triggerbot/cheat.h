@@ -4,7 +4,8 @@
 #include "localEntity.h"
 #include "triggerbot.h"
 #include "BHop.h"
-#include "GlowESP.h"
+#include "glowESP.h"
+#include "entityListManager.h"
 
 enum class sig_on_state
 {
@@ -40,6 +41,7 @@ private:
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Memory* m_MemoryManager;
 	LocalEntity* m_locEnt;
+    EntityListManager* m_entList;
 	Triggerbot* triggerbot;
 	BHop* bhop;
     GlowESP* glow;

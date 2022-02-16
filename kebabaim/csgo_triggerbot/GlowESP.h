@@ -2,6 +2,7 @@
 
 #include "memory.h"
 #include "localEntity.h"
+#include "entityListManager.h"
 #include <iostream>
 #include <Windows.h>
 #include <vector>
@@ -25,22 +26,12 @@ struct glow_object_t2
     BYTE fullBloom = false;
 };
 
-struct entity_t
-{
-    DWORD base;
-    int glow_index;
-};
-
 class GlowESP
 {
 public:
-	GlowESP(Memory* m_Mem, LocalEntity* m_LocEnt);
+	GlowESP(Memory* Mem, LocalEntity* LocEnt, EntityListManager* entListManager);
 
 	DWORD GetGlowObjManager() const;
-	DWORD GetEntity(int i) const;
-    int GetEntityHealth(DWORD entity) const;
-	int GetEntityClassID(DWORD entity) const;
-    void SetupGlowEnteties();
 
 	bool isEnabled = true;
     bool teamGlow = false;
@@ -51,14 +42,10 @@ public:
 	void run();
 
 private:
-    int GetLifeState(DWORD entity);
-
 	Memory* m_Mem;
 	LocalEntity* m_LocEnt;
-    glow_object_t2 glow_object;
-
-    std::vector<entity_t> enemies;
-    std::vector<entity_t> teammates;
+    glow_object_t2 glow_object;    
+    EntityListManager* m_EntList;
 
 	void WriteGlow(int glowIndex) const;
 };

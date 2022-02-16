@@ -33,7 +33,10 @@
     <ClCompile Include="BHop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GlowESP.cpp">
+    <ClCompile Include="glowESP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="entityListManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +59,13 @@
     <ClInclude Include="BHop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GlowESP.h">
+    <ClInclude Include="glowESP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="entityListManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
