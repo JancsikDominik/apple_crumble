@@ -22,29 +22,6 @@ Cheat::~Cheat()
 void Cheat::run()
 {
     DrawMenu();
-    /*
-    while (true)
-    {
-        Settings();
-
-        // getting game state
-        DWORD state = -1;
-        GetExitCodeProcess(m_MemoryManager->GetProcHandle(), &state);
-        // if game state isn't active we exit the cheat
-        if (state != STILL_ACTIVE)
-        {
-            exit(0);
-        }
-
-        // checking if user is in game
-        if (IsInGame())
-        {
-            glow->run();
-            triggerbot->run();
-            bhop->run();
-        }
-    }
-    */
 
     std::thread settingsThread(&Cheat::menuLoop, this);
     std::thread glowThread(&Cheat::glowLoop, this);
@@ -183,19 +160,6 @@ void Cheat::DrawMenu()
         SetConsoleTextAttribute(hConsole, 4);
         std::cout << "[OFF]" << std::endl;
     }
-
-    SetConsoleTextAttribute(hConsole, 3);
-    std::cout << "  > [F6] Autostrafe (kinda buggy): ";
-    if (bhop->isAutoStrafeOn)
-    {
-        SetConsoleTextAttribute(hConsole, 2);
-        std::cout << "[ON]" << std::endl;
-    }
-    else
-    {
-        SetConsoleTextAttribute(hConsole, 4);
-        std::cout << "[OFF]" << std::endl;
-    }
 }
 
 void Cheat::Settings()
@@ -258,13 +222,6 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F5) < 0)
     {
         bhop->isEnabled = !bhop->isEnabled;
-        system("CLS");
-        DrawMenu();
-        Sleep(150);
-    }
-    if (GetAsyncKeyState(VK_F6) < 0)
-    {
-        bhop->isAutoStrafeOn = !bhop->isAutoStrafeOn;
         system("CLS");
         DrawMenu();
         Sleep(150);

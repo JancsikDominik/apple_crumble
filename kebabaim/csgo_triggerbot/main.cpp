@@ -2,7 +2,6 @@
 
 int main()
 {
-    Cheat* cheat = new Cheat();
-    cheat->run();
-    delete cheat;
+    Cheat cheat;
+    cheat.run();
 }

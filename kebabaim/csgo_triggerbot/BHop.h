@@ -11,7 +11,7 @@ public:
 	void run();
 
 	bool isEnabled;
-	bool isAutoStrafeOn;
+
 private:
 	const Memory* m_Mem;
 	const LocalEntity* m_locEnt;
