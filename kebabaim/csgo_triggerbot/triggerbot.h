@@ -8,7 +8,7 @@ class Triggerbot
 public:
 	Triggerbot(const Memory* Mem, const LocalEntity* locEnt);
 
-	void enable();
+	void run();
 
 	bool teamTrigger = false;
 	bool isEnabled;

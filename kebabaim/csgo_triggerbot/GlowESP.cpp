@@ -19,7 +19,7 @@ DWORD GlowESP::GetGlowObjManager() const
 	return m_Mem->Read<DWORD>(m_Mem->Client + signatures::dwGlowObjectManager);
 }
 
-void GlowESP::enable()
+void GlowESP::run()
 {
 	if (potatoMode)
 	{

@@ -148,6 +148,7 @@
     <ClCompile Include="glowESP.cpp" />
     <ClCompile Include="localEntity.cpp" />
     <ClCompile Include="memory.cpp" />
+    <ClCompile Include="radar.cpp" />
     <ClCompile Include="triggerbot.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +160,7 @@
     <ClInclude Include="glowESP.h" />
     <ClInclude Include="localEntity.h" />
     <ClInclude Include="memory.h" />
+    <ClInclude Include="radar.h" />
     <ClInclude Include="resource3.h" />
     <ClInclude Include="triggerbot.h" />
   </ItemGroup>

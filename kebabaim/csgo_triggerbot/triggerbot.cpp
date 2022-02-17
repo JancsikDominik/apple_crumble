@@ -8,7 +8,7 @@ Triggerbot::Triggerbot(const Memory* Mem, const LocalEntity* locEnt): m_Mem(Mem)
 	isEnabled = true;
 }
 
-void Triggerbot::enable()
+void Triggerbot::run()
 {
     if (isEnabled && GetAsyncKeyState(VK_XBUTTON2) < 0)
     {

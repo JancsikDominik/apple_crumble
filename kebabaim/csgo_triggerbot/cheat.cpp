@@ -6,20 +6,23 @@
 Cheat::Cheat(): 
     m_MemoryManager(new Memory()), m_locEnt(new LocalEntity(m_MemoryManager)), m_entList(new EntityListManager(m_locEnt, m_MemoryManager)),
     triggerbot(new Triggerbot(m_MemoryManager, m_locEnt)), bhop(new BHop(m_MemoryManager, m_locEnt)),
-    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList)), chams(new Chams(m_MemoryManager, m_entList, m_locEnt))
+    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList)), chams(new Chams(m_MemoryManager, m_entList, m_locEnt)), radar(new Radar(m_MemoryManager, m_entList))
 {
 }
 
 Cheat::~Cheat()
 {
+    delete radar;
+    delete chams;
     delete glow;
     delete triggerbot;
     delete bhop;
+    delete m_entList;
     delete m_locEnt;
 	delete m_MemoryManager;
 }
 
-void Cheat::enable()
+void Cheat::run()
 {
     DrawMenu();
 
@@ -29,7 +32,9 @@ void Cheat::enable()
     std::thread bhopThread(&Cheat::bhopLoop, this);
     std::thread triggerThread(&Cheat::triggerLoop, this);
     std::thread isInGameThread(&Cheat::isInGameLoop, this);
+    std::thread radarThread(&Cheat::radarLoop, this);
 
+    radarThread.detach();
     playerListUpdaterThread.detach();
     isInGameThread.detach();
     triggerThread.detach();
@@ -81,7 +86,7 @@ void Cheat::DrawMenu()
      */
 
     SetConsoleTextAttribute(hConsole, 5);    
-    std::cout << "Visuals:" << std::endl;
+    std::cout << " Visuals:" << std::endl;
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F2] Glow ESP: ";
 
@@ -156,7 +161,7 @@ void Cheat::DrawMenu()
      */
 
     SetConsoleTextAttribute(hConsole, 5);
-    std::cout << "Misc:" << std::endl;
+    std::cout << " Misc:" << std::endl;
    
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F4] Triggerbot (triggerkey: mouse5): ";
@@ -205,6 +210,19 @@ void Cheat::DrawMenu()
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F6] Potato-Mode: ";
     if (glow->potatoMode)
+    {
+        SetConsoleTextAttribute(hConsole, 2);
+        std::cout << "[ON]" << std::endl;
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        std::cout << "[OFF]" << std::endl;
+    }
+
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [HOME] Radar: ";
+    if (radar->isEnabled)
     {
         SetConsoleTextAttribute(hConsole, 2);
         std::cout << "[ON]" << std::endl;
@@ -304,6 +322,13 @@ void Cheat::Settings()
         DrawMenu();
         Sleep(150);
     }
+    if (GetAsyncKeyState(VK_HOME) < 0)
+    {
+        radar->isEnabled = !radar->isEnabled;
+        system("CLS");
+        DrawMenu();
+        Sleep(150);
+    }
 }
 
 void Cheat::triggerLoop()
@@ -311,7 +336,7 @@ void Cheat::triggerLoop()
     while (true)
     {
         if (isInGame)
-            triggerbot->enable();
+            triggerbot->run();
         else
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
@@ -322,7 +347,7 @@ void Cheat::bhopLoop()
     while (true)
     {
         if (isInGame) 
-            bhop->enable();
+            bhop->run();
         else
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
@@ -334,7 +359,7 @@ void Cheat::glowLoop()
     {
         if (isInGame && glow->isEnabled)
         { 
-            glow->enable(); 
+            glow->run(); 
         }
         else
         {
@@ -359,5 +384,20 @@ void Cheat::isInGameLoop()
         isInGame = IsInGame();
 
         std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+}
+
+void Cheat::radarLoop()
+{
+    while (true)
+    {
+        if (isInGame && radar->isEnabled)
+        {
+            radar->run();
+        }
+        else
+        {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+        }
     }
 }

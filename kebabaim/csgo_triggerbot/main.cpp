@@ -3,5 +3,5 @@
 int main()
 {
     Cheat cheat;
-    cheat.enable();
+    cheat.run();
 }

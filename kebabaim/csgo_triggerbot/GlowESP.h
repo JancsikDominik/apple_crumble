@@ -39,7 +39,7 @@ public:
     bool potatoMode = false;
     bool hpGlow = true;
 
-	void enable();
+	void run();
 
 private:
 	Memory* m_Mem;

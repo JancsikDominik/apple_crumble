@@ -7,6 +7,7 @@
 #include "glowESP.h"
 #include "entityListManager.h"
 #include "chams.h"
+#include "radar.h"
 
 enum class sig_on_state
 {
@@ -25,7 +26,7 @@ class Cheat
 public:
 	Cheat();
 	~Cheat();
-	void enable();
+	void run();
 
 private:
     sig_on_state SigOnState();
@@ -38,7 +39,7 @@ private:
     void glowLoop();
     void menuLoop();
     void isInGameLoop();
-    void chamsLoop();
+    void radarLoop();
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Memory* m_MemoryManager;
@@ -48,6 +49,7 @@ private:
 	BHop* bhop;
     GlowESP* glow;
     Chams* chams;
+    Radar* radar;
 
     bool isInGame = false;
 };

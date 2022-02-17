@@ -42,6 +42,9 @@
     <ClCompile Include="chams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="radar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="csgo.hpp">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="chams.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="radar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

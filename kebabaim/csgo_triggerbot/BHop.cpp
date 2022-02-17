@@ -8,7 +8,7 @@ BHop::BHop(const Memory* Mem, const LocalEntity* locEnt): m_Mem(Mem), m_locEnt(l
 	isEnabled = true;
 }
 
-void BHop::enable()
+void BHop::run()
 {
     // Checking if spacebar is pressed down
     if (isEnabled && GetAsyncKeyState(VK_SPACE) < 0)
