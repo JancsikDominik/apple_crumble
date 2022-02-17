@@ -19,7 +19,7 @@ DWORD GlowESP::GetGlowObjManager() const
 	return m_Mem->Read<DWORD>(m_Mem->Client + signatures::dwGlowObjectManager);
 }
 
-void GlowESP::run()
+void GlowESP::enable()
 {
 	if (potatoMode)
 	{
@@ -42,9 +42,9 @@ void GlowESP::run()
 			}
 			else
 			{
-				glow_object.red = 0.5f;
-				glow_object.green = 0.5f;
-				glow_object.blue = 1.f;
+				glow_object.red = 1.f;
+				glow_object.green = 0.f;
+				glow_object.blue = 0.f;
 			}
 
 			glow_object.fullBloom = fullBloom;
@@ -60,7 +60,7 @@ void GlowESP::run()
 
 		if (!dormant)
 		{
-			glow_object.red =0.f;
+			glow_object.red = 0.f;
 			glow_object.green = 0.f;
 			glow_object.blue = 1.f;
 

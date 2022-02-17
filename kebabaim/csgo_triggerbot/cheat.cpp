@@ -6,7 +6,7 @@
 Cheat::Cheat(): 
     m_MemoryManager(new Memory()), m_locEnt(new LocalEntity(m_MemoryManager)), m_entList(new EntityListManager(m_locEnt, m_MemoryManager)),
     triggerbot(new Triggerbot(m_MemoryManager, m_locEnt)), bhop(new BHop(m_MemoryManager, m_locEnt)),
-    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList))
+    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList)), chams(new Chams(m_MemoryManager, m_entList, m_locEnt))
 {
 }
 
@@ -19,7 +19,7 @@ Cheat::~Cheat()
 	delete m_MemoryManager;
 }
 
-void Cheat::run()
+void Cheat::enable()
 {
     DrawMenu();
 
@@ -47,7 +47,7 @@ void Cheat::run()
         {
             exit(0);
         }
-
+        
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
@@ -124,6 +124,19 @@ void Cheat::DrawMenu()
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F9] Hp glow: ";
     if (glow->hpGlow)
+    {
+        SetConsoleTextAttribute(hConsole, 2);
+        std::cout << "[ON]" << std::endl;
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        std::cout << "[OFF]" << std::endl;
+    }
+
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [F11] Chams: ";
+    if (chams->IsEnabled())
     {
         SetConsoleTextAttribute(hConsole, 2);
         std::cout << "[ON]" << std::endl;
@@ -277,6 +290,16 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F9) < 0)
     {
         glow->hpGlow = !glow->hpGlow;
+        glow->hpGlow ? chams->setColors(255, 255, 255) : chams->setColors(255, 255, 0);
+        if (chams->IsEnabled()) 
+            chams->enable();
+        system("CLS");
+        DrawMenu();
+        Sleep(150);
+    }
+    if (GetAsyncKeyState(VK_F11) < 0)
+    {
+        chams->IsEnabled() ? chams->disable() : chams->enable();
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -288,7 +311,7 @@ void Cheat::triggerLoop()
     while (true)
     {
         if (isInGame)
-            triggerbot->run();
+            triggerbot->enable();
         else
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
@@ -299,7 +322,7 @@ void Cheat::bhopLoop()
     while (true)
     {
         if (isInGame) 
-            bhop->run();
+            bhop->enable();
         else
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
@@ -311,7 +334,7 @@ void Cheat::glowLoop()
     {
         if (isInGame && glow->isEnabled)
         { 
-            glow->run(); 
+            glow->enable(); 
         }
         else
         {

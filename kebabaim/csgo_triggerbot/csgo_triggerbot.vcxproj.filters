@@ -39,6 +39,9 @@
     <ClCompile Include="entityListManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="chams.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="csgo.hpp">
@@ -66,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="entityListManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="chams.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

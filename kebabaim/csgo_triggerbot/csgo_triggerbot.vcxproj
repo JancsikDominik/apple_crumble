@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BHop.cpp" />
+    <ClCompile Include="chams.cpp" />
     <ClCompile Include="cheat.cpp" />
     <ClCompile Include="entityListManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -151,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BHop.h" />
+    <ClInclude Include="chams.h" />
     <ClInclude Include="cheat.h" />
     <ClInclude Include="csgo.hpp" />
     <ClInclude Include="entityListManager.h" />

@@ -6,6 +6,7 @@
 #include "BHop.h"
 #include "glowESP.h"
 #include "entityListManager.h"
+#include "chams.h"
 
 enum class sig_on_state
 {
@@ -24,7 +25,7 @@ class Cheat
 public:
 	Cheat();
 	~Cheat();
-	void run();
+	void enable();
 
 private:
     sig_on_state SigOnState();
@@ -37,6 +38,7 @@ private:
     void glowLoop();
     void menuLoop();
     void isInGameLoop();
+    void chamsLoop();
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Memory* m_MemoryManager;
@@ -45,6 +47,7 @@ private:
 	Triggerbot* triggerbot;
 	BHop* bhop;
     GlowESP* glow;
+    Chams* chams;
 
     bool isInGame = false;
 };

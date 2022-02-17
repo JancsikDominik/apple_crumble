@@ -8,7 +8,7 @@ class BHop
 public:
 	BHop(const Memory* Mem, const LocalEntity* locEnt);
 
-	void run();
+	void enable();
 
 	bool isEnabled;
 
