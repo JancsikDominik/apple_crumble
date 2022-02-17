@@ -6,6 +6,8 @@
 
 struct entity_t
 {
+	entity_t() {}
+	entity_t(DWORD b, int glidx): base(b), glow_index(glidx) {}
 	DWORD base;
 	int glow_index;
 };

@@ -3,7 +3,7 @@
 #include <thread>
 
 EntityListManager::EntityListManager(LocalEntity* locEnt, Memory* mem): 
-	m_Mem(mem), m_LocEnt(locEnt), enemies(std::vector<entity_t>(32)), teammates(std::vector<entity_t>(32))
+	m_Mem(mem), m_LocEnt(locEnt), enemies(std::vector<entity_t>()), teammates(std::vector<entity_t>())
 {
 }
 
@@ -51,9 +51,10 @@ void EntityListManager::UpdatePlayerList()
 {
 	while (true)
 	{
-		int teammate_cnt = 0;
-		int enemy_cnt = 0;
 		int local_player_team = m_LocEnt->GetTeamID();
+
+		enemies.clear();
+		teammates.clear();
 
 		for (int i = 0; i < 128; i++)
 		{
@@ -64,15 +65,11 @@ void EntityListManager::UpdatePlayerList()
 
 				if (entity_team == local_player_team)
 				{
-					teammates[teammate_cnt].base = entity;
-					teammates[teammate_cnt].glow_index = m_Mem->Read<int>(teammates[teammate_cnt].base + netvars::m_iGlowIndex);
-					teammate_cnt++;
+					teammates.push_back(entity_t(entity, m_Mem->Read<int>(entity + netvars::m_iGlowIndex)));
 				}
 				else
 				{
-					enemies[enemy_cnt].base = entity;
-					enemies[enemy_cnt].glow_index = m_Mem->Read<int>(enemies[enemy_cnt].base + netvars::m_iGlowIndex);
-					enemy_cnt++;
+					enemies.push_back(entity_t(entity, m_Mem->Read<int>(entity + netvars::m_iGlowIndex)));
 				}
 			}
 		}
