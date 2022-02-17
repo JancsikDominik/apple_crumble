@@ -33,7 +33,9 @@ void Cheat::run()
     std::thread triggerThread(&Cheat::triggerLoop, this);
     std::thread isInGameThread(&Cheat::isInGameLoop, this);
     std::thread radarThread(&Cheat::radarLoop, this);
+    std::thread chamsThread(&Chams::run, chams);
 
+    chamsThread.detach();
     radarThread.detach();
     playerListUpdaterThread.detach();
     isInGameThread.detach();

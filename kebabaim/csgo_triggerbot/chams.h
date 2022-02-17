@@ -10,6 +10,7 @@ class Chams
 public:
 	Chams(Memory* mem, EntityListManager* entList, LocalEntity* locEnt);
 
+	void run();
 	void enable();
 	void disable();
 	bool IsEnabled();

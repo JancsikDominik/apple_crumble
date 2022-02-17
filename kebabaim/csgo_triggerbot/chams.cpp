@@ -1,10 +1,24 @@
 #include "chams.h"
+#include <thread>
 
 Chams::Chams(Memory* _mem, EntityListManager* _entList, LocalEntity* _locEnt) : mem(_mem), entList(_entList), locEnt(_locEnt)
 {
     r = 255;
     g = 255;
     b = 255;
+}
+
+void Chams::run()
+{
+    while (true)
+    {
+        if (isEnabled)
+        {
+            this->enable();
+        }
+
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
 }
 
 void Chams::enable()
