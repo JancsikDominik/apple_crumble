@@ -30,12 +30,16 @@ void GlowESP::run()
 
 	for (int i = 0; i < m_EntList->GetEnemyCount(); i++)
 	{
-		bool dormant = m_Mem->Read<bool>(m_EntList->GetEnemy(i).base + signatures::m_bDormant);
+		entity_t enemy = m_EntList->GetEnemy(i);
+
+		if (enemy.base == NULL) continue;
+
+		bool dormant = m_Mem->Read<bool>(enemy.base + signatures::m_bDormant);
 		if (!dormant)
 		{
 			if (hpGlow)
 			{
-				int hp = m_EntList->GetEntityHealth(m_EntList->GetEnemy(i).base);
+				int hp = m_EntList->GetEntityHealth(enemy.base);
 				glow_object.red = 1.f - (hp / 100.f);
 				glow_object.green = hp / 100.f;
 				glow_object.blue = 0.f;
@@ -48,7 +52,7 @@ void GlowESP::run()
 			}
 
 			glow_object.fullBloom = fullBloom;
-			WriteGlow(m_EntList->GetEnemy(i).glow_index);
+			WriteGlow(enemy.glow_index);
 		}
 	}
 
@@ -56,7 +60,11 @@ void GlowESP::run()
 
 	for (int i = 0; i < m_EntList->GetTeammateCount(); i++)
 	{
-		bool dormant = m_Mem->Read<bool>(m_EntList->GetTeammate(i).base + signatures::m_bDormant);
+		entity_t teammate = m_EntList->GetTeammate(i);
+
+		if (teammate.base == NULL) continue;
+
+		bool dormant = m_Mem->Read<bool>(teammate.base + signatures::m_bDormant);
 
 		if (!dormant)
 		{
@@ -65,7 +73,7 @@ void GlowESP::run()
 			glow_object.blue = 1.f;
 
 			glow_object.fullBloom = fullBloom;
-			WriteGlow(m_EntList->GetTeammate(i).glow_index);
+			WriteGlow(teammate.glow_index);
 		}
 	}
 }

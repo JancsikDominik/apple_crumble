@@ -9,12 +9,18 @@ EntityListManager::EntityListManager(LocalEntity* locEnt, Memory* mem):
 
 entity_t EntityListManager::GetEnemy(int i) const
 {
-	return enemies[i];
+	if (i < enemies.size())
+		return enemies[i];
+	else
+		return entity_t(NULL, NULL);
 }
 
 entity_t EntityListManager::GetTeammate(int i) const
 {
-	return teammates[i];
+	if (i < teammates.size())
+		return teammates[i];
+	else
+		return entity_t(NULL, NULL);
 }
 
 int EntityListManager::GetEnemyCount() const
