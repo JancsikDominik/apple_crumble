@@ -4,4 +4,4 @@
 
 ## Usage
 Clone/download the repo, compile it and the kebabaim.exe while csgo is running.
-Offsets propaply needs updating, you can do it yourself.
+Offsets propaply needs updating.
