@@ -77,7 +77,7 @@ void Cheat::DrawMenu()
 {
     SetConsoleTextAttribute(hConsole, 4);
     std::cout << "-------------------------------------------------------------------------------------------------------------------" << std::endl;
-    std::cout << "                                                     KEBABAIM                                                      " << std::endl;
+    std::cout << "                                                Apple Crumble                                                      " << std::endl;
     std::cout << "-------------------------------------------------------------------------------------------------------------------" << std::endl;
     std::cout << std::endl;
 
