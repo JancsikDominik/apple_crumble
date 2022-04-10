@@ -3,5 +3,5 @@
 
 
 ## Usage
-Clone/download the repo, compile it and the kebabaim.exe while csgo is running.
+Clone/download the repo, compile it and start the .exe while csgo is running.
 Offsets probably needs updating.
