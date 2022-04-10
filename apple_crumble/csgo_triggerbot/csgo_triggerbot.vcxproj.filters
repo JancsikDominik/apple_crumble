@@ -68,9 +68,6 @@
     <ClInclude Include="glowESP.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="entityListManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -80,15 +77,18 @@
     <ClInclude Include="radar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="kebabaim.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="kebabaim.rc">
+    <ResourceCompile Include="apple_crumble.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

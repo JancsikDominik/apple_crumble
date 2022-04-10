@@ -161,14 +161,14 @@
     <ClInclude Include="localEntity.h" />
     <ClInclude Include="memory.h" />
     <ClInclude Include="radar.h" />
-    <ClInclude Include="resource3.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="triggerbot.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="kebabaim.ico" />
+    <ResourceCompile Include="apple_crumble.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="kebabaim.rc" />
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
