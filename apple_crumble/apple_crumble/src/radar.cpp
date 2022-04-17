@@ -1,5 +1,5 @@
-#include "radar.h"
-#include "csgo.hpp"
+#include "../headers/radar.h"
+#include "../headers/csgo.hpp"
 #include <thread>
 
 Radar::Radar(Memory* _mem, EntityListManager* _entList): mem(_mem), entList(_entList)

@@ -1,4 +1,4 @@
-#include "memory.h"
+#include "../headers/memory.h"
 #include <iostream>
 
 Memory::Memory()

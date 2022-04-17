@@ -1,4 +1,4 @@
-#include "chams.h"
+#include "../headers/chams.h"
 #include <thread>
 
 Chams::Chams(Memory* _mem, EntityListManager* _entList, LocalEntity* _locEnt) : mem(_mem), entList(_entList), locEnt(_locEnt)

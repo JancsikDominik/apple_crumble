@@ -103,6 +103,9 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -140,35 +143,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BHop.cpp" />
-    <ClCompile Include="chams.cpp" />
-    <ClCompile Include="cheat.cpp" />
-    <ClCompile Include="entityListManager.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="glowESP.cpp" />
-    <ClCompile Include="localEntity.cpp" />
-    <ClCompile Include="memory.cpp" />
-    <ClCompile Include="radar.cpp" />
-    <ClCompile Include="triggerbot.cpp" />
+    <ClCompile Include="src\BHop.cpp" />
+    <ClCompile Include="src\chams.cpp" />
+    <ClCompile Include="src\cheat.cpp" />
+    <ClCompile Include="src\entityListManager.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\glowESP.cpp" />
+    <ClCompile Include="src\localEntity.cpp" />
+    <ClCompile Include="src\memory.cpp" />
+    <ClCompile Include="src\radar.cpp" />
+    <ClCompile Include="src\triggerbot.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BHop.h" />
-    <ClInclude Include="chams.h" />
-    <ClInclude Include="cheat.h" />
-    <ClInclude Include="csgo.hpp" />
-    <ClInclude Include="entityListManager.h" />
-    <ClInclude Include="glowESP.h" />
-    <ClInclude Include="localEntity.h" />
-    <ClInclude Include="memory.h" />
-    <ClInclude Include="radar.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="triggerbot.h" />
+    <ClInclude Include="headers\BHop.h" />
+    <ClInclude Include="headers\chams.h" />
+    <ClInclude Include="headers\cheat.h" />
+    <ClInclude Include="headers\csgo.hpp" />
+    <ClInclude Include="headers\entityListManager.h" />
+    <ClInclude Include="headers\glowESP.h" />
+    <ClInclude Include="headers\localEntity.h" />
+    <ClInclude Include="headers\memory.h" />
+    <ClInclude Include="headers\radar.h" />
+    <ClInclude Include="resources\resource.h" />
+    <ClInclude Include="headers\triggerbot.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="apple_crumble.rc" />
+    <ResourceCompile Include="resources\apple_crumble.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon1.ico" />
+    <Image Include="resources\icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

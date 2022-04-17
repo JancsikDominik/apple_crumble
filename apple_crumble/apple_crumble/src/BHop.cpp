@@ -1,5 +1,5 @@
-#include "BHop.h"
-#include "csgo.hpp"
+#include "../headers/BHop.h"
+#include "../headers/csgo.hpp"
 #include <iostream>
 #include <thread>
 
