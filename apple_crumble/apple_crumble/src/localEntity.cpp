@@ -1,5 +1,5 @@
-#include "../headers/localEntity.h"
-#include "../headers/csgo.hpp"
+#include "../includes/localEntity.h"
+#include "../includes/csgo.hpp"
 #include <iostream>
 
 // shallow copy (why would we need multiple memory managers, the cheat class can provide it for us.

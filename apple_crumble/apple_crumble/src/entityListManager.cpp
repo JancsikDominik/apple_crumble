@@ -1,5 +1,5 @@
-#include "../headers/entityListManager.h"
-#include "../headers/csgo.hpp"
+#include "../includes/entityListManager.h"
+#include "../includes/csgo.hpp"
 #include <thread>
 
 EntityListManager::EntityListManager(LocalEntity* locEnt, Memory* mem): 

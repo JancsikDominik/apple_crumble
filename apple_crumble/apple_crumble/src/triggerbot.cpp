@@ -1,5 +1,5 @@
-#include "../headers/triggerbot.h"
-#include "../headers/csgo.hpp"
+#include "../includes/triggerbot.h"
+#include "../includes/csgo.hpp"
 #include <iostream>
 #include <thread>
 

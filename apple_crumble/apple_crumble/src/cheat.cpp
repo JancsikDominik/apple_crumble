@@ -1,5 +1,5 @@
-#include "../headers/cheat.h"
-#include "../headers/csgo.hpp"
+#include "../includes/cheat.h"
+#include "../includes/csgo.hpp"
 #include <iostream>
 #include <thread>
 
