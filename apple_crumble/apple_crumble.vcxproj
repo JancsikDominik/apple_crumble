@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>$(project_name)_stripped</TargetName>
+    <TargetName>$(projectname)_stripped</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,6 +147,7 @@
     <ClCompile Include="src\BHop.cpp" />
     <ClCompile Include="src\chams.cpp" />
     <ClCompile Include="src\cheat.cpp" />
+    <ClCompile Include="src\configManager.cpp" />
     <ClCompile Include="src\entityListManager.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\glowESP.cpp" />
@@ -165,6 +166,8 @@
     <ClInclude Include="headers\localEntity.h" />
     <ClInclude Include="headers\memory.h" />
     <ClInclude Include="headers\radar.h" />
+    <ClInclude Include="includes\configManager.h" />
+    <ClInclude Include="includes\json.hpp" />
     <ClInclude Include="resources\resource.h" />
     <ClInclude Include="headers\triggerbot.h" />
   </ItemGroup>
