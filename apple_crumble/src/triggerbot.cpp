@@ -19,7 +19,11 @@ void Triggerbot::run()
         bool TriggerEntityDormant = m_Mem->Read<bool>(TriggerEntityBase + signatures::m_bDormant);
 
         // delay before shot
-        delay == 0 ? std::this_thread::sleep_for(std::chrono::microseconds(10)) : Sleep(delay);
+        if (delay != 0)
+        {
+            // only sleep if it has delay
+            std::this_thread::sleep_for(std::chrono::milliseconds(delay));
+        }
 
         // checking if entity is a valid entity (a player), and entity team
         if ((cross > 0 && cross <= 64) && (TriggerEntityBase != NULL) && (TriggerEntityTeam != NULL) && (!TriggerEntityDormant))
@@ -46,5 +50,5 @@ void Triggerbot::run()
             }
         }
     }
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
+    std::this_thread::sleep_for(std::chrono::microseconds(1));
 }
