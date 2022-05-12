@@ -7,9 +7,9 @@
 #include <Windows.h>
 #include <vector>
 
-struct Vector
+struct color_t
 {
-    float x, y, z;
+    float r, g, b;
 };
 
 struct glow_object_t2
@@ -41,7 +41,12 @@ public:
 
 	void run();
 
+    void SetTeamColor(float r, float g, float b);
+    void SetEnemyColor(float r, float g, float b);
+
 private:
+    color_t enemyColor{ 0.5f, 0.5f, 1.f };
+    color_t teamColor{ 1.f, 0.f, 0.f };
 	Memory* m_Mem;
 	LocalEntity* m_LocEnt;
     glow_object_t2 glow_object;    

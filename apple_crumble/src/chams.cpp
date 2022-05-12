@@ -24,7 +24,6 @@ void Chams::run()
 void Chams::enable()
 {
     isEnabled = true;
-    float brightness = 80.f;
     int playerteamID = locEnt->GetTeamID();
 
     for (int i = 1; i < 512; i++)

@@ -16,6 +16,7 @@ public:
 	bool IsEnabled();
 
 	void setColors(BYTE r, BYTE g, BYTE b);
+	float brightness = 80.f;
 
 private:
 	BYTE r, g, b;

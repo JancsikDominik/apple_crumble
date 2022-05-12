@@ -19,12 +19,12 @@ settings_t ConfigManager::LoadConfig()
 		cfg["teamGlow"].get<bool>(),
 		cfg["hpGlow"].get<bool>(),
 		cfg["fullBloom"].get<bool>(),
-		cfg["enemyGlowColor"].get<std::tuple<int, int, int>>(),
-		cfg["teamGlowColor"].get<std::tuple<int, int, int>>(),
+		cfg["enemyGlowColor"].get<std::tuple<float, float, float>>(),
+		cfg["teamGlowColor"].get<std::tuple<float, float, float>>(),
 		cfg["isPotatoModeEnabled"].get<bool>(),
 		cfg["isChamsEnabled"].get<bool>(),
 		cfg["chamsColor"].get<std::tuple<int, int, int>>(),
-		cfg["chamsBrightness"].get<int>(),
+		cfg["chamsBrightness"].get<float>(),
 		cfg["isRadarEnabled"].get<bool>()
 	};
 	in.close();

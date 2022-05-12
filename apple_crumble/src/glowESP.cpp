@@ -46,9 +46,9 @@ void GlowESP::run()
 			}
 			else
 			{
-				glow_object.red = 1.f;
-				glow_object.green = 0.f;
-				glow_object.blue = 0.f;
+				glow_object.red = enemyColor.r;
+				glow_object.green = enemyColor.g;
+				glow_object.blue = enemyColor.b;
 			}
 
 			glow_object.fullBloom = fullBloom;
@@ -56,7 +56,8 @@ void GlowESP::run()
 		}
 	}
 
-	if (!teamGlow) return;
+	if (!teamGlow) 
+		return;
 
 	for (int i = 0; i < m_EntList->GetTeammateCount(); i++)
 	{
@@ -68,12 +69,26 @@ void GlowESP::run()
 
 		if (!dormant)
 		{
-			glow_object.red = 0.f;
-			glow_object.green = 0.f;
-			glow_object.blue = 1.f;
+			glow_object.red = teamColor.r;
+			glow_object.green = teamColor.g;
+			glow_object.blue = teamColor.b;
 
 			glow_object.fullBloom = fullBloom;
 			WriteGlow(teammate.glow_index);
 		}
 	}
+}
+
+void GlowESP::SetTeamColor(float r, float g, float b)
+{
+	teamColor.r = r;
+	teamColor.g = g;
+	teamColor.b = b;
+}
+
+void GlowESP::SetEnemyColor(float r, float g, float b)
+{
+	enemyColor.r = r;
+	enemyColor.g = g;
+	enemyColor.b = b;
 }

@@ -12,12 +12,12 @@ struct settings_t
 	bool teamGlow = false;
 	bool hpGlow = true;
 	bool fullBloom = false;
-	std::tuple<uint32_t, uint32_t, uint32_t> enemyGlowColor = std::make_tuple(255, 0, 0);
-	std::tuple<uint32_t, uint32_t, uint32_t> teamGlowColor = std::make_tuple(255, 0, 0);
+	std::tuple<float, float, float> enemyGlowColor = std::make_tuple(0.5f, 0.5f, 1.f);
+	std::tuple<float, float, float> teamGlowColor = std::make_tuple(1.f, 0, 0);
 	bool isPotatoModeEnabled = false;
 	bool isChamsEnabled = false;
 	std::tuple<uint32_t, uint32_t, uint32_t> chamsColor = std::make_tuple(255, 255, 255);;
-	int chamsBrightness = 80;
+	float chamsBrightness = 80.f;
 	bool isRadarEnabled = true;
 
 };

@@ -369,10 +369,6 @@ void Cheat::Settings()
     {
         glow->hpGlow = !glow->hpGlow;
         settings.hpGlow = glow->hpGlow;
-        glow->hpGlow ? chams->setColors(255, 255, 255) : chams->setColors(255, 255, 0);
-        if (chams->IsEnabled()) 
-            chams->enable();
-        settings.isChamsEnabled = chams->IsEnabled();
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -484,13 +480,17 @@ void Cheat::LoadSettings()
     glow->fullBloom = settings.fullBloom;
     glow->potatoMode = settings.isPotatoModeEnabled;
     glow->teamGlow = settings.teamGlow;
-    // glow->teamColor
-    // glow->enemyColor
+    auto enemyColor = settings.enemyGlowColor;
+    auto teamColor = settings.teamGlowColor;
+    glow->SetEnemyColor(std::get<0>(enemyColor), std::get<1>(enemyColor), std::get<2>(enemyColor));
+    glow->SetTeamColor(std::get<0>(teamColor), std::get<1>(teamColor), std::get<2>(teamColor));
     triggerbot->isEnabled = settings.isTriggerEnabled;
     triggerbot->delay = settings.triggerDelay;
     triggerbot->teamTrigger = settings.teamTrigger;
     bhop->isEnabled = settings.isBhopEnabled;
     settings.isChamsEnabled ? chams->enable() : chams->disable();
-    // chams->brightness
+    chams->brightness = settings.chamsBrightness;
+    std::tuple<BYTE, BYTE, BYTE> chamsColors = settings.chamsColor;
+    chams->setColors(std::get<0>(chamsColors), std::get<1>(chamsColors), std::get<2>(chamsColors));
     radar->isEnabled = settings.isRadarEnabled;
 }
