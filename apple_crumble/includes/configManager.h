@@ -16,10 +16,10 @@ struct settings_t
 	bool isRadarEnabled;
 };
 
-class ConfigManager
+static class ConfigManager
 {
 public:
-	settings_t LoadConfig();
-	void SaveConfig(const settings_t& settings);
+	static settings_t LoadConfig();
+	static void SaveConfig(const settings_t& settings);
 private:
 };

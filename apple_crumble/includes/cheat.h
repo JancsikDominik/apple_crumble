@@ -8,6 +8,7 @@
 #include "entityListManager.h"
 #include "chams.h"
 #include "radar.h"
+#include "configManager.h"
 
 enum class sig_on_state
 {
@@ -50,6 +51,8 @@ private:
     GlowESP* glow;
     Chams* chams;
     Radar* radar;
+
+    settings_t settings;
 
     bool isInGame = false;
 };
