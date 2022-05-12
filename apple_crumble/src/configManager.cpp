@@ -11,18 +11,23 @@ settings_t ConfigManager::LoadConfig()
 	in >> cfg;
 	
 	settings_t settings {
-		cfg["isTriggerEnable"].get<bool>(),
+		cfg["isTriggerEnabled"].get<bool>(),
 		cfg["triggerDelay"].get<int>(),
+		cfg["teamTrigger"].get<bool>(),
 		cfg["isBhopEnabled"].get<bool>(),
 		cfg["isGlowEnabled"].get<bool>(),
-		cfg["glowColor"].get<std::tuple<int, int, int>>(),
+		cfg["teamGlow"].get<bool>(),
+		cfg["hpGlow"].get<bool>(),
+		cfg["fullBloom"].get<bool>(),
+		cfg["enemyGlowColor"].get<std::tuple<int, int, int>>(),
+		cfg["teamGlowColor"].get<std::tuple<int, int, int>>(),
 		cfg["isPotatoModeEnabled"].get<bool>(),
 		cfg["isChamsEnabled"].get<bool>(),
 		cfg["chamsColor"].get<std::tuple<int, int, int>>(),
 		cfg["chamsBrightness"].get<int>(),
-		cfg["isRadarEnabled"].get<int>()
+		cfg["isRadarEnabled"].get<bool>()
 	};
-
+	in.close();
 	return settings;
 }
 
@@ -33,9 +38,14 @@ void ConfigManager::SaveConfig(const settings_t& settings)
 	json cfg = {
 		{"isTriggerEnabled", settings.isTriggerEnabled},
 		{"triggerDelay", settings.triggerDelay},
+		{"teamTrigger", settings.teamTrigger},
 		{"isBhopEnabled", settings.isBhopEnabled},
 		{"isGlowEnabled", settings.isGlowEnabled},
-		{"glowColor", settings.glowColor},
+		{"teamGlow", settings.teamGlow},
+		{"hpGlow", settings.hpGlow},
+		{"fullBloom", settings.fullBloom},
+		{"enemyGlowColor", settings.enemyGlowColor},
+		{"teamGlowColor", settings.teamGlowColor},
 		{"isPotatoModeEnabled", settings.isPotatoModeEnabled},
 		{"isChamsEnabled", settings.isChamsEnabled},
 		{"chamsColor", settings.chamsColor},
@@ -45,4 +55,5 @@ void ConfigManager::SaveConfig(const settings_t& settings)
 
 	std::ofstream off("config.json");
 	off << std::setw(4) << cfg << std::endl;
+	off.close();
 }

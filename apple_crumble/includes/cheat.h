@@ -41,6 +41,7 @@ private:
     void menuLoop();
     void isInGameLoop();
     void radarLoop();
+    void LoadSettings();
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	Memory* m_MemoryManager;
@@ -53,7 +54,7 @@ private:
     Radar* radar;
 
     settings_t settings;
-
+    bool lockMenu = false;
     bool isInGame = false;
 };
 

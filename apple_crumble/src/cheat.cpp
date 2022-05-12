@@ -1,6 +1,8 @@
 #include "../includes/cheat.h"
 #include "../includes/csgo.hpp"
+#include "../includes/configManager.h"
 #include <iostream>
+#include <fstream>
 #include <thread>
 
 Cheat::Cheat(): 
@@ -8,6 +10,17 @@ Cheat::Cheat():
     triggerbot(new Triggerbot(m_MemoryManager, m_locEnt)), bhop(new BHop(m_MemoryManager, m_locEnt)),
     glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList)), chams(new Chams(m_MemoryManager, m_entList, m_locEnt)), radar(new Radar(m_MemoryManager, m_entList))
 {
+    std::ifstream f;
+    f.open("config.json");
+    if (!f)
+    {
+        ConfigManager::SaveConfig(settings);
+    }
+    else
+    {
+        settings = ConfigManager::LoadConfig();
+        LoadSettings();
+    }
 }
 
 Cheat::~Cheat()
@@ -234,13 +247,50 @@ void Cheat::DrawMenu()
         SetConsoleTextAttribute(hConsole, 4);
         std::cout << "[OFF]" << std::endl;
     }
+
+    /*
+     *
+     *            Others
+     *
+     */
+
+    SetConsoleTextAttribute(hConsole, 5);
+    std::cout << std::endl << " Others:" << std::endl;
+
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [F1] Lock menu (can't change settings): ";
+    if (lockMenu)
+    {
+        SetConsoleTextAttribute(hConsole, 4);
+        std::cout << "[LOCKED]" << std::endl;
+    }
+    else
+    {
+        SetConsoleTextAttribute(hConsole, 2);
+        std::cout << "[UNLOCKED]" << std::endl;
+    }
+    SetConsoleTextAttribute(hConsole, 3);
+    std::cout << "  > [F12] Save current settings " << std::endl;
 }
 
 void Cheat::Settings()
 {
+    if (lockMenu)
+    {
+        if (GetAsyncKeyState(VK_F1) < 0)
+        {
+            lockMenu = false;
+            system("CLS");
+            DrawMenu();
+            Sleep(150);
+        }
+        return;
+    }
+
     if (GetAsyncKeyState(VK_F2) < 0)
     {
         glow->isEnabled = !glow->isEnabled;
+        settings.isGlowEnabled = glow->isEnabled;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -248,6 +298,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F3) < 0)
     {
         glow->teamGlow = !glow->teamGlow;
+        settings.teamGlow = glow->teamGlow;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -255,6 +306,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F7) < 0)
     {
         glow->fullBloom = !glow->fullBloom;
+        settings.fullBloom = glow->fullBloom;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -262,6 +314,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F4) < 0)
     {
         triggerbot->isEnabled = !triggerbot->isEnabled;
+        settings.isTriggerEnabled = triggerbot->isEnabled;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -269,6 +322,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F8) < 0)
     {
         triggerbot->teamTrigger = !triggerbot->teamTrigger;
+        settings.teamTrigger = triggerbot->teamTrigger;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -278,6 +332,7 @@ void Cheat::Settings()
         if (triggerbot->delay < 150)
         {
             triggerbot->delay += 10;
+            settings.triggerDelay = triggerbot->delay;
             system("CLS");
             DrawMenu();
             Sleep(150);
@@ -288,6 +343,7 @@ void Cheat::Settings()
         if (triggerbot->delay > 0)
         {
             triggerbot->delay -= 10;
+            settings.triggerDelay = triggerbot->delay;
             system("CLS");
             DrawMenu();
             Sleep(150);
@@ -296,6 +352,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F5) < 0)
     {
         bhop->isEnabled = !bhop->isEnabled;
+        settings.isBhopEnabled = bhop->isEnabled;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -303,6 +360,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F6) < 0)
     {
         glow->potatoMode = !glow->potatoMode;
+        settings.isPotatoModeEnabled = glow->potatoMode;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -310,9 +368,11 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F9) < 0)
     {
         glow->hpGlow = !glow->hpGlow;
+        settings.hpGlow = glow->hpGlow;
         glow->hpGlow ? chams->setColors(255, 255, 255) : chams->setColors(255, 255, 0);
         if (chams->IsEnabled()) 
             chams->enable();
+        settings.isChamsEnabled = chams->IsEnabled();
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -320,6 +380,7 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_F11) < 0)
     {
         chams->IsEnabled() ? chams->disable() : chams->enable();
+        settings.isChamsEnabled = chams->IsEnabled();
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -327,6 +388,18 @@ void Cheat::Settings()
     if (GetAsyncKeyState(VK_HOME) < 0)
     {
         radar->isEnabled = !radar->isEnabled;
+        settings.isRadarEnabled = radar->isEnabled;
+        system("CLS");
+        DrawMenu();
+        Sleep(150);
+    }
+    if (GetAsyncKeyState(VK_F12) < 0)
+    {
+        ConfigManager::SaveConfig(settings);
+    }
+    if (GetAsyncKeyState(VK_F1) < 0)
+    {
+        lockMenu = true;
         system("CLS");
         DrawMenu();
         Sleep(150);
@@ -402,4 +475,22 @@ void Cheat::radarLoop()
             std::this_thread::sleep_for(std::chrono::seconds(1));
         }
     }
+}
+
+void Cheat::LoadSettings()
+{
+    glow->isEnabled = settings.isGlowEnabled;
+    glow->hpGlow = settings.hpGlow;
+    glow->fullBloom = settings.fullBloom;
+    glow->potatoMode = settings.isPotatoModeEnabled;
+    glow->teamGlow = settings.teamGlow;
+    // glow->teamColor
+    // glow->enemyColor
+    triggerbot->isEnabled = settings.isTriggerEnabled;
+    triggerbot->delay = settings.triggerDelay;
+    triggerbot->teamTrigger = settings.teamTrigger;
+    bhop->isEnabled = settings.isBhopEnabled;
+    settings.isChamsEnabled ? chams->enable() : chams->disable();
+    // chams->brightness
+    radar->isEnabled = settings.isRadarEnabled;
 }
