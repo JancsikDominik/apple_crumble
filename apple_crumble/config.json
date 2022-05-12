@@ -1,0 +1,20 @@
+{
+    "isTriggerEnabled": true,
+    "triggerDelay": 0,
+    "isBhopEnabled": true,
+    "isGlowEnabled": true,
+    "glowColor": [
+        255,
+        0,
+        0
+    ],
+    "isPotatoModeEnabled": false,
+    "isChamsEnabled": false,
+    "chamsColor": [
+        255,
+        255,
+        255
+    ],
+    "chamsBrightness": 80,
+    "isRadarEnabled": true
+}
