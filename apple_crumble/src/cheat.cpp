@@ -6,9 +6,14 @@
 #include <thread>
 
 Cheat::Cheat(): 
-    m_MemoryManager(new Memory()), m_locEnt(new LocalEntity(m_MemoryManager)), m_entList(new EntityListManager(m_locEnt, m_MemoryManager)),
-    triggerbot(new Triggerbot(m_MemoryManager, m_locEnt)), bhop(new BHop(m_MemoryManager, m_locEnt)),
-    glow(new GlowESP(m_MemoryManager, m_locEnt, m_entList)), chams(new Chams(m_MemoryManager, m_entList, m_locEnt)), radar(new Radar(m_MemoryManager, m_entList))
+    m_MemoryManager(std::make_shared<Memory>()), 
+    m_locEnt(std::make_shared<LocalEntity>(m_MemoryManager)), 
+    m_entList(std::make_shared<EntityListManager>(m_locEnt, m_MemoryManager)),
+    triggerbot(std::make_unique<Triggerbot>(m_MemoryManager, m_locEnt)), 
+    bhop(std::make_unique<BHop>(m_MemoryManager, m_locEnt)),
+    glow(std::make_unique<GlowESP>(m_MemoryManager, m_locEnt, m_entList)),
+    chams(std::make_shared<Chams>(m_MemoryManager, m_entList, m_locEnt)), 
+    radar(std::make_unique<Radar>(m_MemoryManager, m_entList))
 {
     std::ifstream f;
     f.open("config.json");
@@ -21,18 +26,6 @@ Cheat::Cheat():
         settings = ConfigManager::LoadConfig();
         LoadSettings();
     }
-}
-
-Cheat::~Cheat()
-{
-    delete radar;
-    delete chams;
-    delete glow;
-    delete triggerbot;
-    delete bhop;
-    delete m_entList;
-    delete m_locEnt;
-	delete m_MemoryManager;
 }
 
 void Cheat::run()

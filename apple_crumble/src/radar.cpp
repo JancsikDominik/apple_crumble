@@ -2,7 +2,8 @@
 #include "../includes/csgo.hpp"
 #include <thread>
 
-Radar::Radar(Memory* _mem, EntityListManager* _entList): mem(_mem), entList(_entList)
+Radar::Radar(std::shared_ptr<Memory> _mem, std::shared_ptr<EntityListManager> _entList): 
+	mem(_mem), entList(_entList)
 {
 }
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <thread>
 
-GlowESP::GlowESP(Memory* Mem, LocalEntity* LocEnt, EntityListManager* entListManager) :
+GlowESP::GlowESP(std::shared_ptr<Memory> Mem, std::shared_ptr<LocalEntity> LocEnt, std::shared_ptr<EntityListManager> entListManager) :
 	m_Mem(Mem), m_LocEnt(LocEnt), m_EntList(entListManager)
 {
 }

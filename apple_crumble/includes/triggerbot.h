@@ -2,11 +2,12 @@
 
 #include "memory.h"
 #include "localEntity.h"
+#include <memory>
 
 class Triggerbot
 {
 public:
-	Triggerbot(const Memory* Mem, const LocalEntity* locEnt);
+	Triggerbot(std::shared_ptr<Memory> Mem, std::shared_ptr<LocalEntity> locEnt);
 
 	void run();
 
@@ -15,8 +16,8 @@ public:
 	int delay = 10;
 
 private:
-	const Memory* m_Mem;
-	const LocalEntity* m_locEnt;
+	std::shared_ptr<Memory> m_Mem;
+	std::shared_ptr<LocalEntity> m_locEnt;
 	
 };
 

@@ -6,6 +6,7 @@
 #include <iostream>
 #include <Windows.h>
 #include <vector>
+#include <memory>
 
 struct color_t
 {
@@ -29,7 +30,7 @@ struct glow_object_t2
 class GlowESP
 {
 public:
-	GlowESP(Memory* Mem, LocalEntity* LocEnt, EntityListManager* entListManager);
+	GlowESP(std::shared_ptr<Memory> Mem, std::shared_ptr<LocalEntity> LocEnt, std::shared_ptr<EntityListManager> entListManager);
 
 	DWORD GetGlowObjManager() const;
 
@@ -47,10 +48,10 @@ public:
 private:
     color_t enemyColor{ 0.5f, 0.5f, 1.f };
     color_t teamColor{ 1.f, 0.f, 0.f };
-	Memory* m_Mem;
-	LocalEntity* m_LocEnt;
+    std::shared_ptr<Memory> m_Mem;
+    std::shared_ptr<LocalEntity> m_LocEnt;
+    std::shared_ptr<EntityListManager> m_EntList;
     glow_object_t2 glow_object;    
-    EntityListManager* m_EntList;
 
 	void WriteGlow(int glowIndex) const;
 };

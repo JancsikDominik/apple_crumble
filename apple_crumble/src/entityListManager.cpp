@@ -2,12 +2,12 @@
 #include "../includes/csgo.hpp"
 #include <thread>
 
-EntityListManager::EntityListManager(LocalEntity* locEnt, Memory* mem): 
+EntityListManager::EntityListManager(std::shared_ptr<LocalEntity> locEnt, std::shared_ptr<Memory> mem):
 	m_Mem(mem), m_LocEnt(locEnt), enemies(std::vector<entity_t>()), teammates(std::vector<entity_t>())
 {
 }
 
-entity_t EntityListManager::GetEnemy(int i) const
+entity_t EntityListManager::GetEnemy(size_t i) const
 {
 	if (i < enemies.size())
 		return enemies[i];
@@ -15,7 +15,7 @@ entity_t EntityListManager::GetEnemy(int i) const
 		return entity_t(NULL, NULL);
 }
 
-entity_t EntityListManager::GetTeammate(int i) const
+entity_t EntityListManager::GetTeammate(size_t i) const
 {
 	if (i < teammates.size())
 		return teammates[i];

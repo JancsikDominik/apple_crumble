@@ -1,5 +1,6 @@
 #pragma once
 #include "memory.h"
+#include <memory>
 
 struct ViewAngles_t
 {
@@ -12,7 +13,7 @@ struct ViewAngles_t
 class LocalEntity
 {
 public:
-	LocalEntity(const Memory* m_MemoryManager);
+	LocalEntity(std::shared_ptr<Memory> memoryManager);
 
 	// Getters
 	DWORD GetLocalPlayer() const;
@@ -27,6 +28,6 @@ public:
 	int GetHP() const;
 
 private:
-	const Memory* m_MemoryManager;
+	std::shared_ptr<Memory> m_MemoryManager;
 };
 

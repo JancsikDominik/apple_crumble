@@ -1,5 +1,6 @@
 #pragma once
 #include <tuple>
+#include <memory>
 #include "json.hpp"
 
 struct settings_t
@@ -22,7 +23,7 @@ struct settings_t
 
 };
 
-static class ConfigManager
+class ConfigManager
 {
 public:
 	static settings_t LoadConfig();

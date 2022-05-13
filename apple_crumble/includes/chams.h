@@ -4,11 +4,12 @@
 #include "localEntity.h"
 #include "entityListManager.h"
 #include "memory.h"
+#include <memory>
 
 class Chams
 {
 public:
-	Chams(Memory* mem, EntityListManager* entList, LocalEntity* locEnt);
+	Chams(std::shared_ptr<Memory> mem, std::shared_ptr<EntityListManager> entList, std::shared_ptr<LocalEntity> locEnt);
 
 	void run();
 	void enable();
@@ -21,8 +22,8 @@ public:
 private:
 	BYTE r, g, b;
 	bool isEnabled = false;
-	LocalEntity* locEnt;
-	Memory* mem;
-	EntityListManager* entList;
+	std::shared_ptr<LocalEntity> locEnt;
+	std::shared_ptr<Memory> mem;
+	std::shared_ptr<EntityListManager> entList;
 };
 

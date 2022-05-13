@@ -3,10 +3,11 @@
 #include "memory.h"
 #include "localEntity.h"
 #include <vector>
+#include <memory>
 
 struct entity_t
 {
-	entity_t() {}
+	entity_t() { base = NULL; glow_index = 0; }
 	entity_t(DWORD b, int glidx): base(b), glow_index(glidx) {}
 	DWORD base;
 	int glow_index;
@@ -15,10 +16,10 @@ struct entity_t
 class EntityListManager
 {
 public:
-	EntityListManager(LocalEntity* locEnt, Memory* mem);
+	EntityListManager(std::shared_ptr<LocalEntity> locEnt, std::shared_ptr<Memory> mem);
 
-	entity_t GetEnemy(int i) const;
-	entity_t GetTeammate(int i) const;
+	entity_t GetEnemy(size_t i) const;
+	entity_t GetTeammate(size_t i) const;
 	int GetEnemyCount() const;
 	int GetTeammateCount() const;
 	DWORD GetEntityAddr(int i) const;
@@ -28,8 +29,8 @@ public:
 	void UpdatePlayerList();
 
 private:
-	LocalEntity* m_LocEnt;
-	Memory* m_Mem;
+	std::shared_ptr<LocalEntity> m_LocEnt;
+	std::shared_ptr<Memory> m_Mem;
 	std::vector<entity_t> enemies;
 	std::vector<entity_t> teammates;
 };

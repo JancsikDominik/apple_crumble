@@ -1,7 +1,8 @@
 #include "../includes/chams.h"
 #include <thread>
 
-Chams::Chams(Memory* _mem, EntityListManager* _entList, LocalEntity* _locEnt) : mem(_mem), entList(_entList), locEnt(_locEnt)
+Chams::Chams(std::shared_ptr<Memory> _mem, std::shared_ptr<EntityListManager> _entList, std::shared_ptr<LocalEntity> _locEnt)
+    : mem(_mem), entList(_entList), locEnt(_locEnt)
 {
     r = 255;
     g = 255;

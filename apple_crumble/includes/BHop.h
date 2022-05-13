@@ -1,20 +1,20 @@
 #pragma once
 
+#include <memory>
 #include "memory.h"
 #include "localEntity.h"
 
 class BHop
 {
 public:
-	BHop(const Memory* Mem, const LocalEntity* locEnt);
+	BHop(std::shared_ptr<Memory> Mem, std::shared_ptr<LocalEntity> locEnt);
 
 	void run();
 
 	bool isEnabled;
 
 private:
-	const Memory* m_Mem;
-	const LocalEntity* m_locEnt;
-	ViewAngles_t prevViewAngles;
+	std::shared_ptr<Memory> m_Mem;
+	std::shared_ptr<LocalEntity> m_locEnt;
 };
 

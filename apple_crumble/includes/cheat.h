@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "memory.h"
 #include "localEntity.h"
 #include "triggerbot.h"
@@ -26,7 +27,6 @@ class Cheat
 {
 public:
 	Cheat();
-	~Cheat();
 	void run();
 
 private:
@@ -44,14 +44,14 @@ private:
     void LoadSettings();
 
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	Memory* m_MemoryManager;
-	LocalEntity* m_locEnt;
-    EntityListManager* m_entList;
-	Triggerbot* triggerbot;
-	BHop* bhop;
-    GlowESP* glow;
-    Chams* chams;
-    Radar* radar;
+	std::shared_ptr<Memory> m_MemoryManager;
+	std::shared_ptr<LocalEntity> m_locEnt;
+    std::shared_ptr<EntityListManager> m_entList;
+    std::unique_ptr<Triggerbot> triggerbot;
+    std::unique_ptr<BHop> bhop;
+    std::unique_ptr<GlowESP> glow;
+    std::shared_ptr<Chams> chams;
+    std::unique_ptr<Radar> radar;
 
     settings_t settings;
     bool lockMenu = false;
