@@ -93,7 +93,7 @@ void Cheat::DrawMenu()
      *
      */
 
-    SetConsoleTextAttribute(hConsole, 5);    
+    SetConsoleTextAttribute(hConsole, 5);
     std::cout << " Visuals:" << std::endl;
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F2] Glow ESP: ";
@@ -251,7 +251,7 @@ void Cheat::DrawMenu()
     std::cout << std::endl << " Others:" << std::endl;
 
     SetConsoleTextAttribute(hConsole, 3);
-    std::cout << "  > [F1] Lock menu (can't change settings): ";
+    std::cout << "  > [L] Lock menu (can't change settings): ";
     if (lockMenu)
     {
         SetConsoleTextAttribute(hConsole, 4);
@@ -386,7 +386,8 @@ void Cheat::Settings()
     {
         ConfigManager::SaveConfig(settings);
     }
-    if (GetAsyncKeyState(VK_F1) < 0)
+    // 	0x4C == L key
+    if (GetAsyncKeyState(0x4C) < 0)
     {
         lockMenu = true;
         system("CLS");
