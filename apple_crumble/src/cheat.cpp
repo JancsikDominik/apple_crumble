@@ -270,7 +270,7 @@ void Cheat::Settings()
 {
     if (lockMenu)
     {
-        if (GetAsyncKeyState(VK_F1) < 0)
+        if (GetAsyncKeyState(0x4C) < 0)
         {
             lockMenu = false;
             system("CLS");
