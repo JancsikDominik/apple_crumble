@@ -149,7 +149,7 @@ namespace signatures
 	constexpr ::std::ptrdiff_t dwZoomSensitivityRatioPtr = 0xDC31B0;
 	constexpr ::std::ptrdiff_t dwbSendPackets = 0xD96A2;
 	constexpr ::std::ptrdiff_t dwppDirect3DDevice9 = 0xA5050;
-	constexpr ::std::ptrdiff_t find_hud_element = 0x2AA95200;
+	constexpr ::std::ptrdiff_t find_hud_element = 0x2D655200;
 	constexpr ::std::ptrdiff_t force_update_spectator_glow = 0x3BB99A;
 	constexpr ::std::ptrdiff_t interface_engine_cvar = 0x3E9EC;
 	constexpr ::std::ptrdiff_t is_c4_owner = 0x3C8A10;
