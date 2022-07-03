@@ -11,9 +11,9 @@ Offsets probably needs updating.
         delay
         team
     Glow (wallhack)
-        hp/red
+        hp/red (or whatever color if you edit it in the config)
     Chams
-        white/orange
+        white/orange (or whatever color if you edit it in the config)
     Bhop
     Radar
     config saver/loader
