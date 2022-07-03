@@ -16,6 +16,7 @@ Offsets probably needs updating.
         white/orange
     Bhop
     Radar
+    config saver/loader
 
 ## Dependencies
     DirectX 2010 June SDK
