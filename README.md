@@ -19,4 +19,4 @@ Offsets probably needs updating.
     config saver/loader
 
 ## Dependencies
-    DirectX 2010 June SDK
+    none
