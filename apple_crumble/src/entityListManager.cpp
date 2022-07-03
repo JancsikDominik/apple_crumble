@@ -1,5 +1,5 @@
-#include "../includes/entityListManager.h"
-#include "../includes/csgo.hpp"
+#include "entityListManager.h"
+#include "csgo.hpp"
 #include <thread>
 
 EntityListManager::EntityListManager(std::shared_ptr<LocalEntity> locEnt, std::shared_ptr<Memory> mem):

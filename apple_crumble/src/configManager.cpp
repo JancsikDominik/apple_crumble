@@ -1,4 +1,4 @@
-#include "../includes/configManager.h"
+#include "configManager.h"
 #include <fstream>
 
 settings_t ConfigManager::LoadConfig()

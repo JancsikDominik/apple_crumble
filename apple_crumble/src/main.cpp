@@ -1,4 +1,4 @@
-#include "../includes/cheat.h"
+#include "cheat.h"
 
 int main()
 {

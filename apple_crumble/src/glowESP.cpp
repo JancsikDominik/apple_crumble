@@ -1,5 +1,5 @@
-#include "../includes/glowESP.h"
-#include "../includes/csgo.hpp"
+#include "glowESP.h"
+#include "csgo.hpp"
 #include <iostream>
 #include <thread>
 

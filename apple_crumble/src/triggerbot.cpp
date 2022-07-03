@@ -1,5 +1,5 @@
-#include "../includes/triggerbot.h"
-#include "../includes/csgo.hpp"
+#include "triggerbot.h"
+#include "csgo.hpp"
 #include <iostream>
 #include <thread>
 
@@ -14,7 +14,7 @@ void Triggerbot::run()
     if (isEnabled && GetAsyncKeyState(VK_XBUTTON2) < 0)
     {
         int cross = m_locEnt->GetiCross();
-        // Retrieve the EntityBase, using dwEntityList                             Getting entity in the crosshair 0x10 == sizeof(entity)
+        // Retrieve the EntityBase, using dwEntityList              Getting entity in the crosshair 0x10 == sizeof(entity)
         DWORD TriggerEntityBase = m_Mem->Read<DWORD>(m_Mem->Client + signatures::dwEntityList + ((cross - 1) * 0x10));
         int TriggerEntityTeam = m_Mem->Read<int>(TriggerEntityBase + netvars::m_iTeamNum);
         bool TriggerEntityDormant = m_Mem->Read<bool>(TriggerEntityBase + signatures::m_bDormant);

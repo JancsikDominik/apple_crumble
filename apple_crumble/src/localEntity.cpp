@@ -1,5 +1,5 @@
-#include "../includes/localEntity.h"
-#include "../includes/csgo.hpp"
+#include "localEntity.h"
+#include "csgo.hpp"
 
 // shallow copy (why would we need multiple memory managers, the cheat class can provide it for us.
 LocalEntity::LocalEntity(std::shared_ptr<Memory> MemoryManager) : m_MemoryManager(MemoryManager)

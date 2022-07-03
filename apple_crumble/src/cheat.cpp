@@ -1,6 +1,6 @@
-#include "../includes/cheat.h"
-#include "../includes/csgo.hpp"
-#include "../includes/configManager.h"
+#include "cheat.h"
+#include "csgo.hpp"
+#include "configManager.h"
 #include <iostream>
 #include <fstream>
 #include <thread>
@@ -93,7 +93,7 @@ void Cheat::DrawMenu()
      *
      */
 
-    SetConsoleTextAttribute(hConsole, 5);
+    SetConsoleTextAttribute(hConsole, 5);    
     std::cout << " Visuals:" << std::endl;
     SetConsoleTextAttribute(hConsole, 3);
     std::cout << "  > [F2] Glow ESP: ";
@@ -251,7 +251,7 @@ void Cheat::DrawMenu()
     std::cout << std::endl << " Others:" << std::endl;
 
     SetConsoleTextAttribute(hConsole, 3);
-    std::cout << "  > [L] Lock menu (can't change settings): ";
+    std::cout << "  > [F1] Lock menu (can't change settings): ";
     if (lockMenu)
     {
         SetConsoleTextAttribute(hConsole, 4);
@@ -270,7 +270,7 @@ void Cheat::Settings()
 {
     if (lockMenu)
     {
-        if (GetAsyncKeyState(0x4C) < 0)
+        if (GetAsyncKeyState(VK_F1) < 0)
         {
             lockMenu = false;
             system("CLS");
@@ -386,8 +386,7 @@ void Cheat::Settings()
     {
         ConfigManager::SaveConfig(settings);
     }
-    // 	0x4C == L key
-    if (GetAsyncKeyState(0x4C) < 0)
+    if (GetAsyncKeyState(VK_F1) < 0)
     {
         lockMenu = true;
         system("CLS");

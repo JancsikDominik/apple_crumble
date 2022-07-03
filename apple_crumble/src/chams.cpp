@@ -1,4 +1,4 @@
-#include "../includes/chams.h"
+#include "chams.h"
 #include <thread>
 
 Chams::Chams(std::shared_ptr<Memory> _mem, std::shared_ptr<EntityListManager> _entList, std::shared_ptr<LocalEntity> _locEnt)
