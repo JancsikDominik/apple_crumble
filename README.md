@@ -2,6 +2,9 @@
 My first attempt at making an external csgo cheat.
 The cheat is Windows (10) only
 
+## Caution
+Glow and Radar are detected!
+
 ## Usage
 Clone/download the repo, compile it and start the .exe while csgo is running.
 Offsets probably needs updating.
