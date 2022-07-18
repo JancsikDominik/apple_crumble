@@ -20,6 +20,3 @@ Offsets probably needs updating.
     Bhop
     Radar
     config saver/loader
-
-## Dependencies
-    none
