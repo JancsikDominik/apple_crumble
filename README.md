@@ -2,6 +2,9 @@
 My first attempt at making an external csgo cheat.
 The cheat is Windows (10) only
 
+## Contribution
+Feel free to contribute!
+
 ## Caution
 The cheat might be detected (at the very least glow and radar sure are)
 
