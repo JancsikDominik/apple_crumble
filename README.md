@@ -1,7 +1,8 @@
-# Apple Crumble
+
+$$\textcolor{red}{\text{Disclaimer: The only reason I wrote this is to learn, I don't condone cheating in a competetive environment.}}$$
+## About the project
 - My first attempt at making an external csgo cheat.
 - The cheat is Windows (10) only
-- Disclaimer: The only reason I wrote this is to learn, I don't condone cheating in a competetive environment. 
 
 ## Contribution
 Feel free to contribute!
