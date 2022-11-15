@@ -26,4 +26,4 @@ Offsets probably needs updating.
     config saver/loader
     
 ## Known issues
-    thread safety
+- thread safety for entity cache
