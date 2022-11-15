@@ -4,12 +4,12 @@ $$\textcolor{red}{\text{Disclaimer: The only reason I wrote this is to learn, I 
 - My first attempt at making an external csgo cheat.
 - The cheat is Windows (10) only
 
-## Caution
-The cheat might be detected (at the very least glow and radar sure are)
+> __Warning__
+> The cheat might be detected (at the very least glow and radar sure are)
 
 ## Usage
-Clone/download the repo, compile it and start the .exe while csgo is running.
-Offsets probably needs updating.
+- Clone/download the repo, compile it and start the .exe while csgo is running.
+- If it doesn't work try updating offsets with hazedumper/other tools, if it still doesn't work you're on your own, as I won't update it
 
 ## Features
     Triggerbot
