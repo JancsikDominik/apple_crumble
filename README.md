@@ -23,3 +23,6 @@ Offsets probably needs updating.
     Bhop
     Radar
     config saver/loader
+    
+## Known issues
+    thread safety
