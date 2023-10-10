@@ -1,4 +1,4 @@
-## Disclaimer: The only reason I wrote this is to learn, I don't condone cheating in a competetive environment.
+### Disclaimer: The only reason I wrote this is to learn, I don't condone cheating in a competetive environment. I made the project public, becuse there is no way anyone can use it anymore, since valve released CS2.
 ## About the project
 - My first attempt at making an external csgo cheat.
 - The cheat is Windows (10) only
